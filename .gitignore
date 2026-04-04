@@ -1,0 +1,6 @@
+# OS generated
+.DS_Store
+Thumbs.db
+
+# Don't track binary in git (only in Releases)
+*.bin

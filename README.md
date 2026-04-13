@@ -1,4 +1,4 @@
-# VuiTV Robot OTA — Firmware Releases
+# Xiaozhi OTA — Firmware Releases
 
 Repository chứa firmware binary releases cho **VuiTV Robot** (ESP32-S3 N16R8).
 
@@ -9,8 +9,8 @@ Vào tab **[Releases](../../releases)** để tải firmware mới nhất.
 ## Cách dùng
 
 Firmware được tự động kiểm tra và cập nhật qua OTA Server:
-- **OTA Server**: https://vuitv-robot-ota.vuitv.workers.dev
-- **API Docs**: https://vuitv-robot-ota.vuitv.workers.dev/docs
+- **OTA Server**: https://ota.vuitv.dev
+- **API Docs**: https://ota.vuitv.dev/docs
 
 ## Board Info
 

@@ -11,16 +11,19 @@ repo nguồn tạo khi gắn tag:
 
 - **Robot `vX.Y.Z`** — bản chính thức, mời mọi robot (tự cài ở lần khởi động kế tiếp nếu bật *Tự động cập nhật*).
 - **Robot `vX.Y.Z-beta.N`** — đăng thành **pre-release**; chỉ robot đã bật **Nhận bản beta** mới được mời.
-- **Camera `vision-vX.Y.Z`** — không đánh dấu *latest* (latest của repo này dành cho firmware robot). Tiền tố `vision-`,
-  `node-` để tag các dòng không đụng nhau.
+- **Camera `vision-vX.Y.Z`** — đăng không đánh dấu *latest* (`make_latest: false`), để nhãn *Latest* của repo vẫn ở
+  bản robot; release node chưa đặt cờ này. Worker không dựa vào *latest*. Tiền tố `vision-`, `node-` để tag các dòng
+  không đụng nhau.
 
-Ảnh factory (flash USB lần đầu) không nằm ở đây mà ở release riêng của `vuitv/xiaozhi-esp32`.
+Bản nạp USB lần đầu không nằm ở đây mà ở release của repo nguồn: robot ở `vuitv/xiaozhi-esp32` (factory zip), camera
+ở `vuitv/vuitv-vision` (`vuitv-vision-s3-factory.bin`). Node chưa có ảnh nạp lần đầu: release của `vuitv/vuitv-node`
+chỉ mang ảnh app, bo mới nạp bằng build từ mã nguồn.
 
 ## Ai đọc repo này
 
 Worker OTA **https://ota.vuitv.dev** (mã nguồn [vuitv/xiaozhi-ota-server](https://github.com/vuitv/xiaozhi-ota-server))
-đọc 30 release gần nhất, chọn bản mới nhất theo kênh (chính thức / beta) **có file khớp đúng** `board.type` + chip của
-thiết bị, rồi trả link tải file đó.
+đọc trang đầu (30 bản) của danh sách release, chọn bản mới nhất theo kênh (chính thức / beta) **có file khớp đúng**
+`board.type` + chip của thiết bị, rồi trả link tải file đó.
 
 | `board.type` | Chip | Flash | File |
 |---|---|---|---|
@@ -32,7 +35,7 @@ thiết bị, rồi trả link tải file đó.
 | `vuitv-node` | ESP32-S3 / ESP32-C3 | 16 MB / 4 MB | `vuitv-node-s3.bin` / `vuitv-node-c3.bin` |
 
 Tạo release bằng tay thì giữ đúng tên tag và tên file ở trên — Worker khớp tên file chính xác, sai một ký tự là thiết bị
-báo "không có bản mới". Cả ba dòng firmware dựng bằng ESP-IDF 6.1.
+báo "không có bản mới". Từ `v2.5.0-beta.1`, cả ba dòng firmware dựng bằng ESP-IDF 6.1.
 
 ## Tài liệu
 
@@ -40,5 +43,5 @@ báo "không có bản mới". Cả ba dòng firmware dựng bằng ESP-IDF 6.1.
 
 - [`docs/areas/release/README.md`](https://github.com/vuitv/xiaozhi-esp32/blob/master/docs/areas/release/README.md) —
   quy trình phát hành, OTA, kênh beta.
-- [`docs/STATUS.md`](https://github.com/vuitv/xiaozhi-esp32/blob/master/docs/STATUS.md) — trạng thái cả hệ thống, bản
-  đang phát hành.
+
+Mục lục: [docs/README.md](https://github.com/vuitv/xiaozhi-esp32/blob/master/docs/README.md) · trạng thái cả hệ thống: [docs/STATUS.md](https://github.com/vuitv/xiaozhi-esp32/blob/master/docs/STATUS.md).

@@ -1,28 +1,47 @@
-# VuiTV Robot OTA — Firmware Releases
+# xiaozhi-ota — firmware phát hành của VuiTV
 
-Repository chứa firmware binary releases cho **VuiTV Robot** (ESP32-S3 N16R8).
+Repo này **chỉ chứa GitHub Releases** (file `.bin` để cập nhật qua mạng), không có mã nguồn. Release do CI của các
+repo nguồn tạo khi gắn tag:
 
-## Download
+| Dòng firmware | Mã nguồn | Tag release ở đây | File |
+|---|---|---|---|
+| Robot | [vuitv/xiaozhi-esp32](https://github.com/vuitv/xiaozhi-esp32) | `vX.Y.Z`, `vX.Y.Z-beta.N` | `vuitv-unified-s3.bin`, `vuitv-unified-c3.bin`, `vuitv-robot.bin`, `vuitv-robot-c3.bin` |
+| Camera | [vuitv/vuitv-vision](https://github.com/vuitv/vuitv-vision) | `vision-vX.Y.Z` (vd. `vision-v0.1.1`) | `vuitv-vision-s3.bin` |
+| Node IR/relay | [vuitv/vuitv-node](https://github.com/vuitv/vuitv-node) | `node-vX.Y.Z` | `vuitv-node-s3.bin`, `vuitv-node-c3.bin` |
 
-Vào tab **[Releases](../../releases)** để tải firmware mới nhất.
+- **Robot `vX.Y.Z`** — bản chính thức, mời mọi robot (tự cài ở lần khởi động kế tiếp nếu bật *Tự động cập nhật*).
+- **Robot `vX.Y.Z-beta.N`** — đăng thành **pre-release**; chỉ robot đã bật **Nhận bản beta** mới được mời.
+- **Camera `vision-vX.Y.Z`** — đăng không đánh dấu *latest* (`make_latest: false`), để nhãn *Latest* của repo vẫn ở
+  bản robot; release node chưa đặt cờ này. Worker không dựa vào *latest*. Tiền tố `vision-`, `node-` để tag các dòng
+  không đụng nhau.
 
-## Cách dùng
+Bản nạp USB lần đầu không nằm ở đây mà ở release của repo nguồn: robot ở `vuitv/xiaozhi-esp32` (factory zip), camera
+ở `vuitv/vuitv-vision` (`vuitv-vision-s3-factory.bin`). Node chưa có ảnh nạp lần đầu: release của `vuitv/vuitv-node`
+chỉ mang ảnh app, bo mới nạp bằng build từ mã nguồn.
 
-Firmware được tự động kiểm tra và cập nhật qua OTA Server:
-- **OTA Server**: https://vuitv-robot-ota.vuitv.workers.dev
-- **API Docs**: https://vuitv-robot-ota.vuitv.workers.dev/docs
+## Ai đọc repo này
 
-## Board Info
+Worker OTA **https://ota.vuitv.dev** (mã nguồn [vuitv/xiaozhi-ota-server](https://github.com/vuitv/xiaozhi-ota-server))
+đọc trang đầu (30 bản) của danh sách release, chọn bản mới nhất theo kênh (chính thức / beta) **có file khớp đúng**
+`board.type` + chip của thiết bị, rồi trả link tải file đó.
 
-| Thông số | Giá trị |
-|----------|---------|
-| **MCU** | ESP32-S3 N16R8 |
-| **Display** | OLED SSD1306 128×64 |
-| **Audio** | INMP441 + MAX98357A |
-| **Motor** | DRV8833 (2x DC Motor) |
-| **Framework** | ESP-IDF v5.5.3 |
+| `board.type` | Chip | Flash | File |
+|---|---|---|---|
+| `vuitv-unified` | ESP32-S3 | 16 MB | `vuitv-unified-s3.bin` |
+| `vuitv-unified` | ESP32-C3 | 16 MB | `vuitv-unified-c3.bin` |
+| `vuitv-robot` | ESP32-S3 (N16R8) | 16 MB | `vuitv-robot.bin` |
+| `vuitv-robot-c3` | ESP32-C3 | 4 MB | `vuitv-robot-c3.bin` |
+| `vuitv-vision` | ESP32-S3 | ≥ 8 MB | `vuitv-vision-s3.bin` |
+| `vuitv-node` | ESP32-S3 / ESP32-C3 | 16 MB / 4 MB | `vuitv-node-s3.bin` / `vuitv-node-c3.bin` |
 
-## Naming Convention
+Tạo release bằng tay thì giữ đúng tên tag và tên file ở trên — Worker khớp tên file chính xác, sai một ký tự là thiết bị
+báo "không có bản mới". Từ `v2.5.0-beta.1`, cả ba dòng firmware dựng bằng ESP-IDF 6.1.
 
-Firmware binary: `vuitv-robot.bin`  
-Pattern: `vuitv-robot-v{version}.bin` (optional)
+## Tài liệu
+
+Ở repo `xiaozhi-esp32`:
+
+- [`docs/areas/release/README.md`](https://github.com/vuitv/xiaozhi-esp32/blob/master/docs/areas/release/README.md) —
+  quy trình phát hành, OTA, kênh beta.
+
+Mục lục: [docs/README.md](https://github.com/vuitv/xiaozhi-esp32/blob/master/docs/README.md) · trạng thái cả hệ thống: [docs/STATUS.md](https://github.com/vuitv/xiaozhi-esp32/blob/master/docs/STATUS.md).

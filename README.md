@@ -1,13 +1,13 @@
 # xiaozhi-ota — firmware phát hành của VuiTV
 
-Repo này **chỉ chứa GitHub Releases** (file `.bin` để cập nhật qua mạng), không có mã nguồn. Release do CI của các
-repo nguồn tạo khi gắn tag:
+Repo này **chỉ chứa GitHub Releases** (file `.bin` để cập nhật qua mạng), không có mã nguồn. Release do các repo nguồn
+tạo khi gắn tag. Các repo nguồn là **riêng tư**, nên dưới đây chỉ ghi tên, không đặt link:
 
 | Dòng firmware | Mã nguồn | Tag release ở đây | File |
 |---|---|---|---|
-| Robot | [vuitv/xiaozhi-esp32](https://github.com/vuitv/xiaozhi-esp32) | `vX.Y.Z`, `vX.Y.Z-beta.N` | `vuitv-unified-s3.bin`, `vuitv-unified-c3.bin`, `vuitv-robot.bin`, `vuitv-robot-c3.bin` |
-| Camera | [vuitv/vuitv-vision](https://github.com/vuitv/vuitv-vision) | `vision-vX.Y.Z` (vd. `vision-v0.1.1`) | `vuitv-vision-s3.bin` |
-| Node IR/relay | [vuitv/vuitv-node](https://github.com/vuitv/vuitv-node) | `node-vX.Y.Z` | `vuitv-node-s3.bin`, `vuitv-node-c3.bin` |
+| Robot | `vuitv/xiaozhi-esp32` | `vX.Y.Z`, `vX.Y.Z-beta.N` | `vuitv-unified-s3.bin`, `vuitv-unified-c3.bin`, `vuitv-robot.bin`, `vuitv-robot-c3.bin` |
+| Camera | `vuitv/vuitv-vision` | `vision-vX.Y.Z` (vd. `vision-v0.1.1`) | `vuitv-vision-s3.bin` |
+| Node IR/relay | `vuitv/vuitv-node` | `node-vX.Y.Z` | `vuitv-node-s3.bin`, `vuitv-node-c3.bin` |
 
 - **Robot `vX.Y.Z`** — bản chính thức, mời mọi robot (tự cài ở lần khởi động kế tiếp nếu bật *Tự động cập nhật*).
 - **Robot `vX.Y.Z-beta.N`** — đăng thành **pre-release**; chỉ robot đã bật **Nhận bản beta** mới được mời.
@@ -15,13 +15,14 @@ repo nguồn tạo khi gắn tag:
   bản robot; release node chưa đặt cờ này. Worker không dựa vào *latest*. Tiền tố `vision-`, `node-` để tag các dòng
   không đụng nhau.
 
-Bản nạp USB lần đầu không nằm ở đây mà ở release của repo nguồn: robot ở `vuitv/xiaozhi-esp32` (factory zip), camera
-ở `vuitv/vuitv-vision` (`vuitv-vision-s3-factory.bin`). Node chưa có ảnh nạp lần đầu: release của `vuitv/vuitv-node`
-chỉ mang ảnh app, bo mới nạp bằng build từ mã nguồn.
+Bản nạp USB lần đầu không nằm ở đây. Robot nạp lần đầu qua trang **https://iot.vuitv.dev/firmware**; hướng dẫn cho
+người dùng ở **https://docs.vuitv.dev**. Ảnh nạp lần đầu nằm ở release của repo nguồn (riêng tư): robot ở
+`vuitv/xiaozhi-esp32` (factory zip), camera ở `vuitv/vuitv-vision` (`vuitv-vision-s3-factory.bin`). Node chưa có ảnh
+nạp lần đầu: release của `vuitv/vuitv-node` chỉ mang ảnh app, bo mới nạp bằng build từ mã nguồn.
 
 ## Ai đọc repo này
 
-Worker OTA **https://ota.vuitv.dev** (mã nguồn [vuitv/xiaozhi-ota-server](https://github.com/vuitv/xiaozhi-ota-server))
+Worker OTA **https://ota.vuitv.dev** (mã nguồn ở repo riêng tư `vuitv/xiaozhi-ota-server`)
 đọc trang đầu (30 bản) của danh sách release, chọn bản mới nhất theo kênh (chính thức / beta) **có file khớp đúng**
 `board.type` + chip của thiết bị, rồi trả link tải file đó.
 
@@ -39,9 +40,6 @@ báo "không có bản mới". Từ `v2.5.0-beta.1`, cả ba dòng firmware dự
 
 ## Tài liệu
 
-Ở repo `xiaozhi-esp32`:
-
-- [`docs/areas/release/README.md`](https://github.com/vuitv/xiaozhi-esp32/blob/master/docs/areas/release/README.md) —
-  quy trình phát hành, OTA, kênh beta.
-
-Mục lục: [docs/README.md](https://github.com/vuitv/xiaozhi-esp32/blob/master/docs/README.md) · trạng thái cả hệ thống: [docs/STATUS.md](https://github.com/vuitv/xiaozhi-esp32/blob/master/docs/STATUS.md).
+Tài liệu phát hành nằm ở repo riêng tư `vuitv/xiaozhi-esp32` (chỉ người trong dự án mở được):
+`docs/areas/release/README.md` (quy trình phát hành, OTA, kênh beta), mục lục `docs/README.md`, trạng thái cả hệ
+thống `docs/STATUS.md`.
